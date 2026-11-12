@@ -123,5 +123,13 @@ const odd = certifyMaximal({ box, radius: 0.13, seed: 3, step: 0.013, maxRounds:
 check("odd step (0.9/0.013 non-integer) certified", odd.certified === true);
 check("odd step: every sample stays inside box", odd.samples.every((p) => p.every((v, i) => v >= box.min[i] && v <= box.max[i])));
 
+/* hole-size sensitivity: the 2r test is easy, this sweep discriminates */
+const sens = JSON.parse(readFileSync("data/sensitivity.json", "utf8"));
+check("sensitivity sweep has 5 radii", sens.rows.length === 5, sens.rows.length);
+check("detection is monotone in hole size", sens.rows.every((r, i) => i === 0 || r.detected >= sens.rows[i - 1].detected),
+      sens.rows.map((r) => r.detected).join(","));
+check("1.5r holes all detected", sens.rows[4].detected === 100, sens.rows[4].detected);
+check("0.5r holes are NOT all detected (test is not tautological)", sens.rows[0].detected < 100, sens.rows[0].detected);
+
 console.log(`\n${n - bad}/${n} assertions passed`);
 process.exit(bad === 0 ? 0 : 1);

@@ -52,6 +52,40 @@ writeFileSync("data/holes.json", JSON.stringify({
   radius, step, cases: holes, randomOnlyCaught,
 }));
 
+/* ---- sensitivity sweep: the 2r test above is structurally easy, so vary
+   the removal radius h and report how often any lattice probe ends up
+   farther than r from the surviving set. ---- */
+const rngSens = createRng(777);
+const latticeSens = probeLattice(box, 0.9 / 16);
+const sensitivity = [0.5, 0.75, 1, 1.25, 1.5].map((hFactor) => {
+  const h = hFactor * radius;
+  let detected = 0;
+  let maxGap = 0;
+  for (let i = 0; i < 100; i++) {
+    const src = cert.samples[Math.floor(rngSens() * cert.samples.length)];
+    const center = [
+      Math.min(box.max[0] - h, Math.max(box.min[0] + h, src[0] + (rngSens() - 0.5) * h)),
+      Math.min(box.max[1] - h, Math.max(box.min[1] + h, src[1] + (rngSens() - 0.5) * h)),
+      Math.min(box.max[2] - h, Math.max(box.min[2] + h, src[2] + (rngSens() - 0.5) * h)),
+    ];
+    const removed = new Set();
+    cert.samples.forEach((p, idx) => {
+      if ((p[0] - center[0]) ** 2 + (p[1] - center[1]) ** 2 + (p[2] - center[2]) ** 2 <= h * h) removed.add(idx);
+    });
+    const keep = cert.samples.filter((_, idx) => !removed.has(idx));
+    const grid = buildGrid(keep, box, radius);
+    let gap = 0;
+    for (const p of latticeSens) {
+      const d = Math.sqrt(nearestDistanceSq(grid, p));
+      if (d > gap) gap = d;
+    }
+    if (gap > radius) detected++;
+    if (gap > maxGap) maxGap = gap;
+  }
+  return { hFactor, h, cases: 100, detected, maxGap };
+});
+writeFileSync("data/sensitivity.json", JSON.stringify({ radius, rows: sensitivity }, null, 2));
+
 /* ---- scale invariance: same geometry at 1e-6 .. 1e6 ---- */
 const scales = [1e-6, 1e-3, 1, 1e3, 1e6];
 const scaleRows = scales.map((s) => {

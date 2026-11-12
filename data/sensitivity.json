@@ -1,0 +1,40 @@
+{
+  "radius": 0.12,
+  "rows": [
+    {
+      "hFactor": 0.5,
+      "h": 0.06,
+      "cases": 100,
+      "detected": 11,
+      "maxGap": 0.17800721125449653
+    },
+    {
+      "hFactor": 0.75,
+      "h": 0.09,
+      "cases": 100,
+      "detected": 27,
+      "maxGap": 0.13901026428861302
+    },
+    {
+      "hFactor": 1,
+      "h": 0.12,
+      "cases": 100,
+      "detected": 89,
+      "maxGap": 0.15072333524492276
+    },
+    {
+      "hFactor": 1.25,
+      "h": 0.15,
+      "cases": 100,
+      "detected": 100,
+      "maxGap": 0.1920838989070858
+    },
+    {
+      "hFactor": 1.5,
+      "h": 0.18,
+      "cases": 100,
+      "detected": 100,
+      "maxGap": 0.1924546618687113
+    }
+  ]
+}
