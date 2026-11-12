@@ -3,7 +3,8 @@
 //
 // Definitions (all lengths in the same unit, no absolute epsilon is used as a
 // geometric threshold; every tolerance below is derived from `radius`):
-//   sep-separated: every pair of samples is at distance >= sepRadius (default r - guard)
+//   sep-separated: every pair of samples is at distance >= sepRadius
+//                  (default (r - guard)*(1 - 1e-12), the factor keeps add-checks strict)
 //   r-maximal   : every point of the box is within `radius` of some sample
 // The certificate below proves r-maximality *up to the probe lattice*:
 //   every box point x is within `guard = step*sqrt(3)/2` of a probe centre p,

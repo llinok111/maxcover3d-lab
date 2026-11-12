@@ -13,7 +13,8 @@ For a box domain and a coverage radius `r`, the library builds a point set that 
 
 - **r-covered** — every point of the box is within `r` of a sample (this is what "maximal"
   means here, *not* minimum distance), and
-- **sep-separated** — every pair of samples is at distance `>= sep = r - guard`.
+- **sep-separated** — every pair of samples is at distance `>= sep = (r - guard)·(1 - 1e-12)`
+  (the 1e-12 factor only keeps the add-comparison strict).
 
 The certificate is sound, not a heuristic. With cell-centre probes of step `s`, every box
 point is within `guard = s·√3/2` of a probe centre `p`; if `d(p, samples) <= maxGap` for all
@@ -59,8 +60,8 @@ certificate hash that Node prints, plus the repair points in orange.
 | Uncovered probes | **0** |
 | Separation (brute-force all pairs) | `0.109641803 >= sep 0.109607695` (= 0.9134·r) |
 | Constructive repair | **91** points, **1** round; 91/91 present in final set |
-| Injections (remove every sample within 2r of a centre) | **500/500** caught with 4,096 lattice probes/case. This is an end-to-end witness test and is structurally easy. |
-| **Hole-size sensitivity** (100 cases per radius h, random sample as centre) | h=0.5r: **11/100**, 0.75r: **27/100**, 1.0r: **89/100**, 1.25r: **100/100**, 1.5r: **100/100** |
+| Injections (remove every sample within 2r of a centre) | **500/500** caught; `detected` is the max over 4,096 lattice probes **plus the hole centre**, lattice-only also 500/500. Both are structurally guaranteed — an end-to-end witness test. |
+| **Hole-size sensitivity** (100 cases per radius h, jittered sample ±h/2 as centre) | h=0.5r: **11/100**, 0.75r: **27/100**, 1.0r: **89/100**, 1.25r: **100/100**, 1.5r: **100/100** |
 | Full-lattice audit, 421,875 probes | **209.51 ms** vs brute-force **830.12 ms** → **3.96×** (15 vs 7 repeats, RSD 0.73%) |
 | 50,000-probe audit | 50.22 ms vs 100.19 ms → 1.99× (RSD 2.11%) |
 | 40,000 nearest queries | 39.16 ms vs 79.61 ms → **2.03×** (RSD 3.63%) |
