@@ -2,7 +2,7 @@
 
 **A 3D Poisson-disk set that proves its own maximality on 421,875 probe cells — and when the proof fails it emits a concrete addable point instead of guessing: 0 uncovered cells, 500/500 injected holes caught, 91 repair points added in 1 round.**
 
-Upstream: none
+Upstream: 原创（本仓自研，无上游）
 
 This is an original tool. `src/core.mjs` is a pure ES module (no three.js, no DOM, no I/O,
 no environment variables) and is shared verbatim by Node and the browser.
