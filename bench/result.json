@@ -1,0 +1,111 @@
+{
+  "node": "v24.19.0",
+  "workload": {
+    "box": {
+      "min": [
+        0,
+        0,
+        0
+      ],
+      "max": [
+        0.9,
+        0.9,
+        0.9
+      ]
+    },
+    "radius": 0.12,
+    "step": 0.012,
+    "samples": 475,
+    "fullProbes": 421875,
+    "subsetProbes": 50000,
+    "queries": 40000,
+    "repeats": 7
+  },
+  "certificate": {
+    "hash": "0xf4f65939",
+    "rounds": 1,
+    "added": 91,
+    "maxGapRatio": 0.9125987231542969,
+    "separation": 0.10964180272322659,
+    "sepRadius": 0.10960769515447713,
+    "probes": 421875,
+    "certified": true
+  },
+  "audit50k": {
+    "core": {
+      "cold": 53.746,
+      "iterations": 7,
+      "min": 48.991,
+      "median": 49.878,
+      "p95": 52.853,
+      "mean": 50.337,
+      "stddev": 1.163,
+      "rsd": 0.0231
+    },
+    "naive": {
+      "cold": 103.89,
+      "iterations": 7,
+      "min": 99.025,
+      "median": 99.221,
+      "p95": 101.604,
+      "mean": 99.727,
+      "stddev": 0.92,
+      "rsd": 0.0092
+    },
+    "speedup": 1.99,
+    "agreement": "maxGap identical in verify.mjs (brute subset)"
+  },
+  "auditFull": {
+    "core": {
+      "cold": 221.465,
+      "iterations": 15,
+      "min": 218.059,
+      "median": 220.943,
+      "p95": 244.097,
+      "mean": 222.769,
+      "stddev": 6.137,
+      "rsd": 0.0275
+    },
+    "naive": {
+      "cold": 824.042,
+      "iterations": 7,
+      "min": 815.667,
+      "median": 816.819,
+      "p95": 828.892,
+      "mean": 819.068,
+      "stddev": 4.225,
+      "rsd": 0.0052
+    },
+    "probes": 421875,
+    "maxGap": 0.10951184677851562,
+    "speedup": 3.7,
+    "note": "core 15 repeats, naive 7"
+  },
+  "query40k": {
+    "core": {
+      "cold": 42.532,
+      "iterations": 7,
+      "min": 38.908,
+      "median": 39.217,
+      "p95": 41.399,
+      "mean": 39.744,
+      "stddev": 0.863,
+      "rsd": 0.0217
+    },
+    "naive": {
+      "cold": 78.384,
+      "iterations": 7,
+      "min": 79.332,
+      "median": 79.949,
+      "p95": 80.85,
+      "mean": 79.996,
+      "stddev": 0.448,
+      "rsd": 0.0056
+    },
+    "speedup": 2.04
+  },
+  "bruteMinSeparation": {
+    "ms": 2.728,
+    "value": 0.10964180272322659
+  }
+}

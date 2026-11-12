@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>maxcover3d-lab — constructive maximality certificate</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; overflow: hidden; background: #070a10; color: #cfe4f5;
+         font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  canvas { display: block; }
+  #panel { position: fixed; top: 16px; left: 16px; width: 322px; padding: 16px;
+           background: #0d1420e6; border: 1px solid #22344d;
+           border-radius: 10px; backdrop-filter: blur(8px); }
+  h1 { margin: 0 0 4px; font-size: 15px; color: #7ee7ff; letter-spacing: .02em; }
+  p.sub { margin: 0 0 12px; color: #6d829b; font-size: 11px; }
+  .row { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0;
+         border-bottom: 1px dashed #1b2839; }
+  .row span:first-child { color: #7d93ab; }
+  .row span:last-child { color: #d8ecff; text-align: right; }
+  #status[data-certified="true"] { color: #6cf3a4; }
+  #status[data-certified="false"] { color: #ff7a7a; }
+  #hash { color: #ffc46b; }
+  input[type=range] { width: 100%; accent-color: #38d7ff; }
+  button { margin-top: 10px; width: 100%; padding: 7px; cursor: pointer;
+           background: #12293b; color: #9fe8ff; border: 1px solid #2b5169; border-radius: 6px; }
+  button:hover { background: #1a3a52; }
+  .legend { display: flex; gap: 14px; margin-top: 10px; font-size: 11px; color: #7d93ab; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="panel">
+  <h1>maxcover3d-lab</h1>
+  <p class="sub">constructive maximality certificate · 421,875 probe cells</p>
+  <div class="row"><span>status</span><span id="status" data-certified="false">…</span></div>
+  <div class="row"><span>samples</span><span id="samples">…</span></div>
+  <div class="row"><span>added by repair</span><span id="added">…</span></div>
+  <div class="row"><span>probe cells</span><span id="probes">…</span></div>
+  <div class="row"><span>max gap</span><span id="gap">…</span></div>
+  <div class="row"><span>proof slack</span><span id="slack">…</span></div>
+  <div class="row"><span>separation</span><span id="sep">…</span></div>
+  <div class="row"><span>certificate hash</span><span id="hash">…</span></div>
+  <div class="row"><span>certify time</span><span id="ms">…</span></div>
+  <div style="margin-top:12px">coverage radius <b id="rlabel">0.120</b>
+    <input id="radius" type="range" min="0.09" max="0.17" step="0.005" value="0.12" />
+  </div>
+  <button id="reseed">new seed → re-certify</button>
+  <div class="legend">
+    <span><i class="dot" style="background:#5fe3ff"></i>initial</span>
+    <span><i class="dot" style="background:#ffa43d"></i>repair points</span>
+  </div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

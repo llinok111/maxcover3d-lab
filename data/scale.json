@@ -1,0 +1,85 @@
+{
+  "scales": [
+    0.000001,
+    0.001,
+    1,
+    1000,
+    1000000
+  ],
+  "rows": [
+    {
+      "scale": 0.000001,
+      "certified": true,
+      "status": "certified",
+      "rounds": 1,
+      "added": 91,
+      "separationOk": true,
+      "maxGapRatio": 0.9125987231542999,
+      "densityRatio": 1.1259259259259258,
+      "probes": 421875,
+      "hash": "0x1b47e9a3"
+    },
+    {
+      "scale": 0.001,
+      "certified": true,
+      "status": "certified",
+      "rounds": 1,
+      "added": 91,
+      "separationOk": true,
+      "maxGapRatio": 0.9125987231542995,
+      "densityRatio": 1.1259259259259256,
+      "probes": 421875,
+      "hash": "0xf33e0d29"
+    },
+    {
+      "scale": 1,
+      "certified": true,
+      "status": "certified",
+      "rounds": 1,
+      "added": 91,
+      "separationOk": true,
+      "maxGapRatio": 0.9125987231542969,
+      "densityRatio": 1.1259259259259256,
+      "probes": 421875,
+      "hash": "0xf4f65939"
+    },
+    {
+      "scale": 1000,
+      "certified": true,
+      "status": "certified",
+      "rounds": 1,
+      "added": 91,
+      "separationOk": true,
+      "maxGapRatio": 0.9125987231542985,
+      "densityRatio": 1.1259259259259258,
+      "probes": 421875,
+      "hash": "0x89344533"
+    },
+    {
+      "scale": 1000000,
+      "certified": true,
+      "status": "certified",
+      "rounds": 1,
+      "added": 91,
+      "separationOk": true,
+      "maxGapRatio": 0.9125987231542989,
+      "densityRatio": 1.1259259259259258,
+      "probes": 421875,
+      "hash": "0xf8d9bc0f"
+    }
+  ],
+  "box": {
+    "kind": "box",
+    "min": [
+      0,
+      0,
+      0
+    ],
+    "max": [
+      0.9,
+      0.9,
+      0.9
+    ]
+  },
+  "radius": 0.12
+}
