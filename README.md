@@ -36,7 +36,7 @@ round** (384 initial → 475 final, 651.58 samples per unit³) and then passed.
 
 ```bash
 node tools/gen-sample.mjs        # deterministic samples (fixed seeds, 4.8 s)
-node bench/verify.mjs            # 51 assertions, exit 0
+node bench/verify.mjs            # 53 assertions, exit 0
 node bench/verify-maximal.mjs    # independent brute-force verifier, no core import
 node bench/bench.mjs             # writes bench/result.json (real timings)
 ```
@@ -60,9 +60,9 @@ certificate hash that Node prints, plus the repair points in orange.
 | Separation (brute-force all pairs) | `0.109641803 >= sep 0.109607695` (= 0.9134·r) |
 | Constructive repair | **91** points, **1** round; 91/91 present in final set |
 | Injections (remove every sample within 2r of a centre) | **500/500** caught with 4,096 lattice probes/case; 4096-lattice-only recall 500/500 |
-| Full-lattice audit, 421,875 probes | **220.94 ms** vs brute-force **816.82 ms** → **3.70×** (15 vs 7 repeats, RSD 2.75%) |
-| 50,000-probe audit | 49.88 ms vs 99.22 ms → 1.99× (RSD 2.31%) |
-| 40,000 nearest queries | 39.22 ms vs 79.95 ms → **2.04×** (RSD 2.17%) |
+| Full-lattice audit, 421,875 probes | **209.51 ms** vs brute-force **830.12 ms** → **3.96×** (15 vs 7 repeats, RSD 0.73%) |
+| 50,000-probe audit | 50.22 ms vs 100.19 ms → 1.99× (RSD 2.11%) |
+| 40,000 nearest queries | 39.16 ms vs 79.61 ms → **2.03×** (RSD 3.63%) |
 | Determinism | seed 7 → `0xf4f65939`; seed 42 replayed 3× → `0x94876fd5` |
 | Scale invariance | 1e-6, 1e-3, 1, 1e3, 1e6: all certified, same 421,875 probes, same rounds, `maxGap/r` spread `< 1e-9` |
 
@@ -80,11 +80,11 @@ it re-implements distance, probe generation and augmentation replay, then brute-
   this as an r-separated Poisson-disk set.
 - **The committed slack is small** (`0.0000958`, 0.08% of r). The inequality holds, but this
   is a proof at this configuration, not a stability claim under perturbation.
-- **Speedup is modest (3.70×), and that is expected**: the committed set has only 475
+- **Speedup is modest (3.96×), and that is expected**: the committed set has only 475
   samples, so each hash query still touches a handful of candidate points. The brute-force
   comparison is reported on the same 421,875 probes; nothing is extrapolated.
-- **Timings move between runs**: the headline full-lattice loop has RSD 2.75% across 15
-  repeats (cold 221.47 ms, median 220.94 ms, p95 244.10 ms); smaller loops are noisier.
+- **Timings move between runs**: the headline full-lattice loop has RSD 0.73% across 15
+  repeats (cold 214.75 ms, median 209.51 ms, p95 214.25 ms); smaller loops are noisier.
 - **No automated headless-browser run.** Browser automation is out of scope in this environment. The
   page is checked statically (HTTP 200 + importmap present) and uses the same module as Node;
   the browser hash display is not asserted by an automated browser.

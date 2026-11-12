@@ -236,12 +236,20 @@ export function probeLattice(box, step) {
   const nz = Math.max(1, Math.ceil((box.max[2] - box.min[2]) / step));
   const probes = new Array(nx * ny * nz);
   let n = 0;
+  // Cell centres. The last cell on each axis may be truncated by the box;
+  // use the centre of the truncated interval so every probe stays inside the
+  // box while the half-diagonal bound (<= step*sqrt(3)/2) is preserved.
+  const centre = (min, max, i, n) => {
+    const start = min + i * step;
+    if (i === n - 1 && start + step > max) return (start + max) / 2;
+    return start + step / 2;
+  };
   for (let i = 0; i < nx; i++) {
-    const x = box.min[0] + (i + 0.5) * step;
+    const x = centre(box.min[0], box.max[0], i, nx);
     for (let j = 0; j < ny; j++) {
-      const y = box.min[1] + (j + 0.5) * step;
+      const y = centre(box.min[1], box.max[1], j, ny);
       for (let k = 0; k < nz; k++) {
-        const z = box.min[2] + (k + 0.5) * step;
+        const z = centre(box.min[2], box.max[2], k, nz);
         probes[n++] = [x, y, z];
       }
     }

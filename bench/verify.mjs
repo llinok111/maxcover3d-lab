@@ -118,5 +118,10 @@ check("negative control: 40 samples not strict", sparseAudit.strict === false);
 check("negative control: finds uncovered probes", sparseAudit.uncovered > 0, sparseAudit.uncovered);
 check("negative control: maxGap > radius", sparseAudit.maxGap > cert.radius, sparseAudit.maxGap.toFixed(4));
 
+/* truncated last cells: non-integer box/step must still stay inside the box */
+const odd = certifyMaximal({ box, radius: 0.13, seed: 3, step: 0.013, maxRounds: 16 });
+check("odd step (0.9/0.013 non-integer) certified", odd.certified === true);
+check("odd step: every sample stays inside box", odd.samples.every((p) => p.every((v, i) => v >= box.min[i] && v <= box.max[i])));
+
 console.log(`\n${n - bad}/${n} assertions passed`);
 process.exit(bad === 0 ? 0 : 1);

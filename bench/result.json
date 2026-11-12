@@ -33,79 +33,79 @@
   },
   "audit50k": {
     "core": {
-      "cold": 53.746,
+      "cold": 56.534,
       "iterations": 7,
-      "min": 48.991,
-      "median": 49.878,
-      "p95": 52.853,
-      "mean": 50.337,
-      "stddev": 1.163,
-      "rsd": 0.0231
+      "min": 49.08,
+      "median": 50.223,
+      "p95": 52.77,
+      "mean": 50.458,
+      "stddev": 1.065,
+      "rsd": 0.0211
     },
     "naive": {
-      "cold": 103.89,
+      "cold": 101.601,
       "iterations": 7,
-      "min": 99.025,
-      "median": 99.221,
-      "p95": 101.604,
-      "mean": 99.727,
-      "stddev": 0.92,
-      "rsd": 0.0092
+      "min": 98.861,
+      "median": 100.188,
+      "p95": 102.035,
+      "mean": 100.553,
+      "stddev": 1.053,
+      "rsd": 0.0105
     },
     "speedup": 1.99,
     "agreement": "maxGap identical in verify.mjs (brute subset)"
   },
   "auditFull": {
     "core": {
-      "cold": 221.465,
+      "cold": 214.749,
       "iterations": 15,
-      "min": 218.059,
-      "median": 220.943,
-      "p95": 244.097,
-      "mean": 222.769,
-      "stddev": 6.137,
-      "rsd": 0.0275
+      "min": 208.474,
+      "median": 209.506,
+      "p95": 214.249,
+      "mean": 210.027,
+      "stddev": 1.525,
+      "rsd": 0.0073
     },
     "naive": {
-      "cold": 824.042,
+      "cold": 850.094,
       "iterations": 7,
-      "min": 815.667,
-      "median": 816.819,
-      "p95": 828.892,
-      "mean": 819.068,
-      "stddev": 4.225,
-      "rsd": 0.0052
+      "min": 820.248,
+      "median": 830.118,
+      "p95": 843.732,
+      "mean": 831.275,
+      "stddev": 9.424,
+      "rsd": 0.0113
     },
     "probes": 421875,
     "maxGap": 0.10951184677851562,
-    "speedup": 3.7,
+    "speedup": 3.96,
     "note": "core 15 repeats, naive 7"
   },
   "query40k": {
     "core": {
-      "cold": 42.532,
+      "cold": 43.318,
       "iterations": 7,
-      "min": 38.908,
-      "median": 39.217,
-      "p95": 41.399,
-      "mean": 39.744,
-      "stddev": 0.863,
-      "rsd": 0.0217
+      "min": 38.951,
+      "median": 39.159,
+      "p95": 43.221,
+      "mean": 39.698,
+      "stddev": 1.441,
+      "rsd": 0.0363
     },
     "naive": {
-      "cold": 78.384,
+      "cold": 78.072,
       "iterations": 7,
-      "min": 79.332,
-      "median": 79.949,
-      "p95": 80.85,
-      "mean": 79.996,
-      "stddev": 0.448,
-      "rsd": 0.0056
+      "min": 79.258,
+      "median": 79.606,
+      "p95": 82.02,
+      "mean": 79.869,
+      "stddev": 0.899,
+      "rsd": 0.0113
     },
-    "speedup": 2.04
+    "speedup": 2.03
   },
   "bruteMinSeparation": {
-    "ms": 2.728,
+    "ms": 3.877,
     "value": 0.10964180272322659
   }
 }
